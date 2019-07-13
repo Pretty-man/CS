@@ -19,24 +19,20 @@ class ToDoList(wx.Frame):
 		vbox2 = wx.BoxSizer(wx.VERTICAL)
 		#添加五个button
 		#实现添加选项,对Button类添加事件
-		self.button_myday=wx.Button(self.panel,-1,label='my day',\
-			pos=(0,0),size=(170,40))
-		self.button_important=wx.Button(self.panel,-1,label='important',\
-			pos=(0,40),size=(170,40))
-		self.button_plan=wx.Button(self.panel,-1,label='plan',\
-			pos=(0,80),size=(170,40))
-		self.button_taxt=wx.Button(self.panel,-1,label='taxt',\
-			pos=(0,120),size=(170,40))
+		liststr=["my day","important","plan","taxt"]
+		number = 0
+		self.button_list = [ None for i in range(len(liststr))]
+		for strstr in liststr:
+			self.button_list[number] = wx.Button(self.panel,-1,label=strstr,pos=(0,number*40),size=(170,40))
+			number+=1
 		self.button_add=wx.Button(self.panel,-1,label='+Add',\
 			pos=(0,443),size=(170,40))
 		#.Bind(wx.EVT_BUTTON,self.on_creat,self.button)
 		#将控件添加到左侧布局内
 		#.Add(self.lb2,2,wx.EXPAND | wx.ALL,0)
 
-		vbox1.Add(self.button_myday,2,wx.EXPAND | wx.ALL,0)
-		vbox1.Add(self.button_important,2,wx.EXPAND | wx.ALL,0)
-		vbox1.Add(self.button_plan,2,wx.EXPAND | wx.ALL,0)
-		vbox1.Add(self.button_taxt,2,wx.EXPAND | wx.ALL,0)
+		for num in range(len(liststr)) :
+			vbox1.Add(self.button_list[num],2,wx.EXPAND | wx.ALL,0)
 		vbox1.Add(self.button_add,2,wx.EXPAND | wx.ALL,0)
 		#添加左侧布局到整个布局上
 		vbox.Add(vbox1,1,flag=wx.EXPAND|wx.LEFT)
