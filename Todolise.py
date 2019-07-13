@@ -44,9 +44,12 @@ class Todolist(wx.Frame):
 		vbox2.Add(self.todo_title,1,flag=wx.EXPAND)
 
 		#下半部分
-		textctrl2 = wx.TextCtrl(self.panel,pos=(171,101)\
-			,size=(630,463),style=wx.TE_MULTILINE)
-		vbox2.Add(textctrl2,1,flag=wx.EXPAND)
+		#textctrl2 = wx.TextCtrl(self.panel,pos=(191,101)\
+		#	,size=(170,-1),style=wx.TE_MULTILINE)
+		self.list_right_real=['1','2','3','4']
+		self.lb3=wx.ListBox(self.panel,1,choices=self.list_right_real,\
+			pos=(171,101),size=(630,424))
+		vbox2.Add(self.lb3,1,flag=wx.EXPAND)
 
 
 		vbox.Add(vbox2,1,border=10)
@@ -64,10 +67,11 @@ class Todolist(wx.Frame):
 		'''该方法获得在窗口内输入的值并返回，返回的
 			即为用户输入的字符串'''
 		awindow=wx.TextEntryDialog(None,\
-			"enter/change the thing you want to do")
+			"enter the thing you want to do")
 		if awindow.ShowModal()==wx.ID_OK:
 			return_value=awindow.GetValue()
 			self.list.append(return_value)
+			#self.lb2.InsertItem(return_value)
 			return return_value
 
 
