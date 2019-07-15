@@ -77,7 +77,7 @@ def ChangeStateUndo():
     c.execute("UPDATE {} set State = 0 where nametodo=todoname".format(listname))
     conn.commit()
     conn.close()
-bol=CreatList(newlistname)
+bol=Creatlist(newlistname)
 bol=Delete(newlistname)
 Listall=ListAll()
 SaveData(listname,ToDoname)
