@@ -25,7 +25,7 @@ def Creatlist(newlistname):
     conn.commit()
     conn.close()
     return True
-def delete():
+def DeleteList(listname):
     conn = sqlite3.connect('test.db')
     c = conn.cursor()
     c.execute('select table from test')
@@ -37,15 +37,15 @@ def delete():
     if f==0:
         conn.close()
         return False
-    c.execute("drop table {}".format(ToDoList))
+    c.execute("drop table {}".format(listname))
     #c.execute("DELETE from ToDoList where ID=2;")
     conn.commit()
     conn.close()
     return True
-def ListAll():
+def ListAll(listname):
     conn = sqlite3.connect('test.db')
     c = conn.cursor()
-    cursor = c.execute("SELECT State, nametodo, time  from {}".format(ToDoList))
+    cursor = c.execute("SELECT State, nametodo, time  from {}".format(listname))
     conn.commit()
     conn.close()
     return cursor
@@ -71,15 +71,15 @@ def ChangeStateDo(listname,todoname):
     c.execute("UPDATE {} set State = 1 where nametodo=todoname".format(listname))
     conn.commit()
     conn.close()
-def ChangeStateUndo():
+def ChangeStateUndo(listname,todoname):
     conn = sqlite3.connect('test.db')
     c = conn.cursor()
     c.execute("UPDATE {} set State = 0 where nametodo=todoname".format(listname))
     conn.commit()
     conn.close()
 bol=Creatlist(newlistname)
-bol=Delete(newlistname)
-Listall=ListAll()
+bol=DeleteList(listname)
+Listall=ListAll(listname)
 SaveData(listname,ToDoname)
 ToDoname=TakeOutData(listname,todoname)
 ChangeStateDo(listname,todoname)
