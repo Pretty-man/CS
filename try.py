@@ -1,14 +1,16 @@
 import sqlite3
 # conn = sqlite3.connect('test.db')
 # c = conn.cursor()
-# def Gettables(db):
-#     try:
-#         # conn=sqlite3.connect('test.db')
-#         # c=conn.cursor()
-#         c.execute("select name from sqlite_master where type='table' order by name")
-#         print(c.fetchall())
-#     except sqlite3.Error as e:
-#         print(e)
+def AllListName():
+    try:
+        conn=sqlite3.connect('test.db')
+        c=conn.cursor()
+        c.execute("select name from sqlite_master where type='table' order by name")
+        print(c.fetchall())
+    except sqlite3.Error as e:
+        print(e)
+    conn.commit()
+    conn.close()
 def Creatlist(newlistname):
     conn = sqlite3.connect('test.db')
     c = conn.cursor()
@@ -61,20 +63,20 @@ def SaveData(listname,ToDoname):
 def TakeOutData(listname,todoname):
     conn = sqlite3.connect('test.db')
     c = conn.cursor()
-    cursor=c.execute("select State, nametodo, time  from {} where name=todoname".format(ToDoList))
+    cursor=c.execute("select State, nametodo, time  from {} where name={}".format(ToDoList,todoname))
     conn.commit()
     conn.close()
     return cursor
 def ChangeStateDo(listname,todoname):
     conn = sqlite3.connect('test.db')
     c = conn.cursor()
-    c.execute("UPDATE {} set State = 1 where nametodo=todoname".format(listname))
+    c.execute("UPDATE {} set State = 1 where nametodo={}".format(listname,todoname))
     conn.commit()
     conn.close()
 def ChangeStateUndo(listname,todoname):
     conn = sqlite3.connect('test.db')
     c = conn.cursor()
-    c.execute("UPDATE {} set State = 0 where nametodo=todoname".format(listname))
+    c.execute("UPDATE {} set State = 0 where nametodo={}".format(listname,todoname))
     conn.commit()
     conn.close()
 bol=Creatlist(newlistname)
@@ -84,3 +86,4 @@ SaveData(listname,ToDoname)
 ToDoname=TakeOutData(listname,todoname)
 ChangeStateDo(listname,todoname)
 ChangeStateUndo(listname,todoname)
+AllListName()
