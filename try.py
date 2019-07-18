@@ -12,6 +12,9 @@ def AllListName():
     conn.commit()
     conn.close()
 def Creatlist(newlistname):
+    for c in newlistname:
+        if c==' ':
+            return false
     conn = sqlite3.connect('test.db')
     c = conn.cursor()
     c.execute('select table from test')
