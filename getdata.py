@@ -50,3 +50,6 @@ ChangeStateDo(listname,todoname)
 
 #改变状态 已经做改为未做
 ChangeStateUndo(listname,todoname)
+
+#返回所有表的名字
+AllListName()
