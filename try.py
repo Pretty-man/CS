@@ -34,7 +34,7 @@ def DeleteList(listname):
     res = c.fetchall()
     f=0
     for line in res:
-        if line == newlistname:
+        if line == listname:
             f=1
     if f==0:
         conn.close()
