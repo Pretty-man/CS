@@ -63,7 +63,7 @@ def SaveData(listname,ToDoname):
 def TakeOutData(listname,todoname):
     conn = sqlite3.connect('test.db')
     c = conn.cursor()
-    cursor=c.execute("select State, nametodo, time  from {} where name={}".format(ToDoList,todoname))
+    cursor=c.execute("select State, nametodo, time  from {} where nametodo={}".format(listname,todoname))
     conn.commit()
     conn.close()
     return cursor
